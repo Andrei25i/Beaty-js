@@ -9,8 +9,8 @@ module.exports = {
         spotifyBridge: true,
         volume: 75,
         leaveOnEmpty: true,
-        leaveOnEmptyCooldown: 60000, // 60s
-        leaveOnEnd: false,
+        leaveOnEmptyCooldown: 0, // ms
+        leaveOnEnd: true,
         leaveOnEndCooldown: 60000,
         discordPlayer: {
             ytdlOptions: {

@@ -9,6 +9,8 @@ const { YoutubeiExtractor } = require('discord-player-youtubei');
 const fs = require("fs");
 const path = require("path");
 
+const eventHandler = require('./eventHandler');
+
 global.client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -35,7 +37,11 @@ for (const file of commandFiles) {
     const command = require(filePath);
 
     client.commands.set(command.name, command);
-    // commands.push(command.name.toJSON());
+    commands.push({
+        name: command.name,
+        description: command.description,
+        options: command.options,
+    });   
 }
 
 client.on("ready", () => {
@@ -45,9 +51,11 @@ client.on("ready", () => {
     for (const guildId of guild_ids) {
         rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId),
             {body: commands})
-        .then(() => console.log("Succesfully updated commands for guild " + guildId))
+        .then(() => console.log("Succesfully updated commands"))
         .catch(console.error);
     }
+
+    console.log("Bot is online!")
 });
 
 client.on("interactionCreate", async interaction => {
@@ -66,5 +74,7 @@ client.on("interactionCreate", async interaction => {
         await interaction.reply({content: "There was an error executing this command"});
     }
 });
+
+eventHandler(player);
 
 client.login(process.env.TOKEN);

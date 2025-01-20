@@ -1,5 +1,5 @@
 const { QueryType, useMainPlayer } = require("discord-player");
-const { ApplicationCommandOptionType, EmbedBuilder, VoiceChannel } = require("discord.js");
+const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "play",
@@ -8,7 +8,7 @@ module.exports = {
     options: [
         {
             name: "song",
-            description: ("The song you want to play"),
+            description: ("The song you want to play (query or url)"),
             type: ApplicationCommandOptionType.String,
             required: true,
         }
@@ -23,18 +23,25 @@ module.exports = {
             searchEngine: QueryType.AUTO
         });
 
-        let defaultEmbed = new EmbedBuilder().setColor("#5072FF");``
+        let defaultEmbed = new EmbedBuilder().setColor("#5072FF");
 
         if (!result?.tracks.length) {
-            defaultEmbed.setAuthor({ name: await `No results found... Try again...`} );
-            return interaction.reply({ embeds: [defaultEmbed] });
+            defaultEmbed.setDescription("No results found... Try again...");
+            return interaction.editReply({ embeds: [defaultEmbed] }).then(message => {
+                message.react('❌');
+                return message;
+            });
         }
 
+        // This line appears to resolve the "requestedBy = null" bug
+        const track = result.tracks[0];
+
         try {
-            const {track} = await player.play(interaction.member.voice.channel, song, {
+            // const {track} = 
+            await player.play(interaction.member.voice.channel, track, {
                 nodeOptions: {
                     metadata: {
-                        channel: interaction.channel
+                        channel: interaction.channel,
                     },  
                     volume: client.config.opt.volume,
                     leaveOnEmpty: client.config.opt.leaveOnEmpty,
@@ -43,12 +50,14 @@ module.exports = {
                     leaveOnEndCooldown: client.config.opt.leaveOnEndCooldown,
                 }
             });
-            defaultEmbed.setDescription(`Se încarcă [${track.title}](${track.url}) în coadă... Cerut de <@${interaction.user.id}>`)
-            await interaction.editReply({ embeds: [defaultEmbed] })
+            defaultEmbed.setDescription(`Added **[${track.title}](${track.url})** to the queue, requested by <@${track.requestedBy.id}>`)
+            await interaction.editReply({ embeds: [defaultEmbed], withResponse: true})
         } catch (error) {
-            console.log(`Play error ${error}`);
-            defaultEmbed.setAuthor({ name: `You are not in a voice channel... Try again...`});
-            return interaction.editReply({ embeds: [defaultEmbed]} );
+            defaultEmbed.setDescription("You are not connected to a voice channel");
+            return interaction.editReply({ embeds: [defaultEmbed] }).then(message => {
+                message.react('❌');
+                return message;
+            });
         }
     }
 }

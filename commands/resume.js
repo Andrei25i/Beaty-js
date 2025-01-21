@@ -12,14 +12,12 @@ module.exports = {
 
         let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
 
-        if (!queue?.isPlaying())
-        {
+        if (!queue?.isPlaying()) {
             defaultEmbed.setDescription("No music is currently playing right now");
             return interaction.editReply({ embeds: [defaultEmbed]});
         }
 
-        if (!queue.node.isPaused())
-        {
+        if (!queue.node.isPaused()) {
             defaultEmbed.setDescription("The player is not paused");
             return interaction.editReply({ embeds: [defaultEmbed]});
         }

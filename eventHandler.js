@@ -1,15 +1,18 @@
 // All the events that occur in the bot. They will be loaded and runned in the index file
 const { EmbedBuilder } = require("discord.js");
+const config = require("./config");
 
-let defaultEmbed = new EmbedBuilder().setColor("#5072FF");
-let titledEmbed = new EmbedBuilder().setColor("#5072FF").setTitle(" "); 
+let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
+let titledEmbed = new EmbedBuilder()
+    .setColor(config.embeds.color)
+    .setTitle(" "); 
 
 // The events are declared here
 module.exports = (player) => {
      // Now Playing a song event
      player.events.on("playerStart", async (queue, track) => {
         const channel = queue.metadata.channel;
-        defaultEmbed.setDescription(`Now playing: **[${track.title}](${track.url})**, requested by <@${track.requestedBy.id}>`)
+        defaultEmbed.setDescription(`Now playing: **[${track.title}](${track.url})**`)
         const message = await channel.send({ embeds: [defaultEmbed] });
         message.react('▶️');
     })

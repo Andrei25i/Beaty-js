@@ -18,5 +18,9 @@ module.exports = {
                 highWatermark: 1 << 25
             }
         }
+    },
+
+    embeds: {
+        color: "#5072FF",
     }
 };

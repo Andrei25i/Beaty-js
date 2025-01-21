@@ -1,5 +1,6 @@
 const { QueryType, useMainPlayer } = require("discord-player");
 const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const config = require("../config");
 
 module.exports = {
     name: "play",
@@ -23,7 +24,7 @@ module.exports = {
             searchEngine: QueryType.AUTO
         });
 
-        let defaultEmbed = new EmbedBuilder().setColor("#5072FF");
+        let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
 
         if (!result?.tracks.length) {
             defaultEmbed.setDescription("No results found... Try again...");

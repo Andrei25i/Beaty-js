@@ -22,9 +22,8 @@ module.exports = {
         const track = queue.currentTrack;
         const timestamp = track.duration;
         const trackDuration = timestamp.progress == "Infinity" ? "infinity (live)" : track.duration
-        const progress = queue.node.createProgressBar();
-        
         const trackStatus = queue.node.isPaused() ? "Paused" : "Playing";
+        const progress = queue.node.createProgressBar();
 
         defaultEmbed
             .setTitle("Current track")

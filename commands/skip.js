@@ -20,6 +20,7 @@ module.exports = {
         }
 
         queue.node.skip();
+        if (queue.node.isPaused()) queue.node.resume();
 
         defaultEmbed.setDescription(`Current track **[${queue.currentTrack.title}](${queue.currentTrack.url})** skipped`);
         const message = await interaction.editReply({ embeds: [defaultEmbed] });

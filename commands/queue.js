@@ -19,8 +19,13 @@ module.exports = {
             return interaction.editReply({ embeds: [defaultEmbed]});
         }
 
-        if (queue.tracks.size < 1) {
+        if (queue.isPlaying() && queue.tracks.size < 1 ) {
             return songCommand.execute({ interaction });
+        }
+
+        if (queue.tracks.size == 0 && !queue.isPlaying()) {
+            defaultEmbed.setDescription("There is no music queued right now. Add some songs with `/play (song/url)`");
+            return interaction.editReply({ embeds: [defaultEmbed]});
         }
 
         for (const track of queue.tracks.data) {

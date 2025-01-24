@@ -27,12 +27,15 @@ module.exports = {
 
         defaultEmbed
             .setTitle("Current track")
-            .setDescription(`
-                **[${track.title}](${track.url})**\nDuration: ${trackDuration}\nTrack status: ${trackStatus}\nRequested by: ${track.requestedBy}\n
-                Progress ${progress}
-                `);
+            .setDescription(`**[${track.title}](${track.url})**`)
+            .addFields(
+                { name: "Duration", value: `\`${trackDuration}\``, inline: true },
+                { name: "Track Status", value: `\`${trackStatus}\``, inline: true },
+                { name: "Requested by", value: `${track.requestedBy}`, inline: true },
+                { name: "Progress", value: `${progress}`}
+            );
         
         const message = await interaction.editReply({ embeds: [defaultEmbed] });
-        setTimeout(() => message.delete(), 30000); // 30s
+        setTimeout(() => message.delete(), config.embeds.songDetailsTimeout);
     }
 }

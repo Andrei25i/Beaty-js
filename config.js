@@ -22,5 +22,8 @@ module.exports = {
 
     embeds: {
         color: "#5072FF",
+        tracksPerPage: 10,
+        songDetailsTimeout: 30000, // 30s
+        queueTimeout: 60000, // 60s
     }
 };

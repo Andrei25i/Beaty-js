@@ -25,5 +25,6 @@ module.exports = {
         tracksPerPage: 10,
         songDetailsTimeout: 30000, // 30s
         queueTimeout: 60000, // 60s
+        loadingTracksTimeout: 10000, // 10s
     }
 };

@@ -3,8 +3,8 @@ const { EmbedBuilder } = require("discord.js");
 const config = require("../config");
 
 module.exports = {
-    name: "shuffle",
-    description: "Shuffles the queue",
+    name: "clear",
+    description: "Clears the queue",
     voiceChannel: true,
     
     async execute({interaction}) {
@@ -25,10 +25,10 @@ module.exports = {
             });
         }
 
-        queue.tracks.shuffle();
+        queue.tracks.clear();
         
-        defaultEmbed.setDescription("Shuffled the queue");
+        defaultEmbed.setDescription("Cleared the queue");
         const message = await interaction.editReply({ embeds: [defaultEmbed] });
-        message.react('🔀');
+        message.react('🗑️');
     }
 }

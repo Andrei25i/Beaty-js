@@ -1,4 +1,4 @@
-const { useQueue } = require("discord-player");
+const { useQueue, QueueRepeatMode } = require("discord-player");
 const { EmbedBuilder } = require("discord.js");
 const config = require("../config");
 
@@ -17,7 +17,9 @@ module.exports = {
             return interaction.editReply({embeds: [defaultEmbed]}).then(message => {
                 message.react('❌');
             });
-        }
+        } 
+
+        if (queue.repeatMode === QueueRepeatMode.TRACK) queue.setRepeatMode(QueueRepeatMode.OFF);
 
         queue.node.skip();
         if (queue.node.isPaused()) queue.node.resume();

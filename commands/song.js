@@ -1,4 +1,4 @@
-const { useQueue } = require("discord-player");
+const { useQueue, QueueRepeatMode } = require("discord-player");
 const { EmbedBuilder } = require("discord.js");
 const config = require("../config");
 
@@ -25,13 +25,19 @@ module.exports = {
         const trackStatus = queue.node.isPaused() ? "Paused" : "Playing";
         const progress = queue.node.createProgressBar();
 
+        let loopModeName = "";
+        if (queue.repeatMode === QueueRepeatMode.OFF) loopModeName = "Off";
+        else if (queue.repeatMode === QueueRepeatMode.TRACK) loopModeName = "Track";
+        else if (queue.repeatMode === QueueRepeatMode.QUEUE) loopModeName = "Queue";
+
         defaultEmbed
             .setTitle("Current track")
             .setDescription(`**[${track.title}](${track.url})**`)
             .addFields(
                 { name: "Duration", value: `\`${trackDuration}\``, inline: true },
                 { name: "Track Status", value: `\`${trackStatus}\``, inline: true },
-                { name: "Requested by", value: `${track.requestedBy}`, inline: true },
+                { name: "Loop Mode", value: `\`${loopModeName}\``, inline: true },
+                { name: "Requested by", value: `${track.requestedBy}` },
                 { name: "Progress", value: `${progress}`}
             );
         

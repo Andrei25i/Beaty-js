@@ -1,4 +1,4 @@
-const { useQueue } = require("discord-player");
+const { useQueue, QueueRepeatMode } = require("discord-player");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const config = require("../config");
 
@@ -34,7 +34,10 @@ module.exports = {
             });
         }
 
-        queue.node.jump(position-1);
+        if (queue.repeatMode === QueueRepeatMode.TRACK) queue.setRepeatMode(QueueRepeatMode.OFF);
+
+        queue.node.jump(position - 1);
+    
         defaultEmbed.setDescription(`Jumping to track number \`${position}\``);
         interaction.editReply({ embeds: [defaultEmbed] });
     }

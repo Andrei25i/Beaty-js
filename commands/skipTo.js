@@ -1,4 +1,4 @@
-const { useQueue } = require("discord-player");
+const { useQueue, QueueRepeatMode } = require("discord-player");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const config = require("../config");
 
@@ -34,7 +34,10 @@ module.exports = {
             });
         }
 
+        if (queue.repeatMode === QueueRepeatMode.TRACK) queue.setRepeatMode(QueueRepeatMode.OFF);
+
         queue.node.skipTo(position-1);
+
         defaultEmbed.setDescription(`Skipping to track number \`${position}\``);
         interaction.editReply({ embeds: [defaultEmbed] });
     }

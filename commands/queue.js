@@ -1,4 +1,4 @@
-const { useQueue } = require("discord-player");
+const { useQueue, QueueRepeatMode } = require("discord-player");
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const config = require("../config");
 const songCommand = require("./song")
@@ -57,6 +57,11 @@ module.exports = {
         }
 
         const generateEmbed = (page) => {
+            let loopModeName = "";
+            if (queue.repeatMode === QueueRepeatMode.OFF) loopModeName = "Off";
+            else if (queue.repeatMode === QueueRepeatMode.TRACK) loopModeName = "Track";
+            else if (queue.repeatMode === QueueRepeatMode.QUEUE) loopModeName = "Queue";
+
             return new EmbedBuilder()
                 .setColor(config.embeds.color)
                 .setTitle("Music Queue")
@@ -67,6 +72,7 @@ module.exports = {
                     { name: "Now Playing", value: `**[${queue.currentTrack.title}](${queue.currentTrack.url})**`},
                     { name: "Entries", value: `\`${queue.tracks.size}\``, inline: true},
                     { name: "Total Duration", value: `\`${totalDurationFormatted}\``, inline: true},
+                    { name: "Loop Mode", value: `\`${loopModeName}\``, inline: true},
                 )
                 .setFooter({text: "/jump <position> to jump to a different track"});
         };

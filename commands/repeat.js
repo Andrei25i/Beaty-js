@@ -18,9 +18,7 @@ module.exports = {
             });
         }
 
-        queue.insertTrack(queue.currentTrack, 0);
-        queue.node.skipTo(0)
-        if (queue.node.isPaused()) queue.node.resume();
+        queue.node.seek(0);
 
         defaultEmbed.setDescription("Replaying the current song");
         const message = await interaction.editReply({embeds: [defaultEmbed]});

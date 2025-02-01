@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "pause",
-    description: "Pauses the current song",
+    description: "Pause the current song",
     voiceChannel: true,
 
     async execute({interaction}) {

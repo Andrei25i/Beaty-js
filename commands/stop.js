@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "stop",
-    description: "Stops the player and leaves the voice channel",
+    description: "Stop the player and leaves the voice channel",
     voiceChannel: true,
 
     async execute({interaction}) {

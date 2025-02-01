@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "play",
-    description: ("Plays a song"),
+    description: ("Play a song"),
     voiceChannel: true,
     options: [
         {

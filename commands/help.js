@@ -3,7 +3,7 @@ const config = require("../config");
 
 module.exports = {
     name: "help",
-    description: "Shows all the commands of the bot",
+    description: "Show all the commands of the bot",
     showHelp: false,
 
     async execute({client, interaction}) {
@@ -18,7 +18,7 @@ module.exports = {
 
         let defaultEmbed = new EmbedBuilder()
             .setColor(config.embeds.color)
-            .setTitle("Bot Commands")
+            .setTitle("/Commands")
             .setDescription(desc);
         
         interaction.editReply({embeds: [defaultEmbed]});

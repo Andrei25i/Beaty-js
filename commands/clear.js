@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "clear",
-    description: "Clears the queue",
+    description: "Clear the queue",
     voiceChannel: true,
     
     async execute({interaction}) {

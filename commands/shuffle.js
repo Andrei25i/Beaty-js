@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "shuffle",
-    description: "Shuffles the queue",
+    description: "Shuffle the queue",
     voiceChannel: true,
     
     async execute({interaction}) {

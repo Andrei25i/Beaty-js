@@ -5,7 +5,7 @@ const config = require("../config");
 
 module.exports = {
     name: "seek",
-    description: "Goes back or forward in a song",
+    description: "Go back or forward in a song",
     voiceChannel: true,
     options: [
         {

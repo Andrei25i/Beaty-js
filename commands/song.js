@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "song",
-    description: ("Shows details about the current song"),
+    description: ("Show details about the current song"),
     voiceChannel: true,
 
     async execute({interaction}) {

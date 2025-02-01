@@ -8,7 +8,7 @@ const config = require("../config");
 
 module.exports = {
     name: "spotify",
-    description: "Loads a playlist or an album from spotify",
+    description: "Load a playlist or an album from spotify",
     voiceChannel: true,
     options: [
         {

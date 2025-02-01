@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "jump",
-    description: "Jumps to a specified position in the queue without deleting the previous tracks",
+    description: "Jump to a specified position in the queue without deleting the previous tracks",
     voiceChannel: true,
     options: [
         {

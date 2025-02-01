@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "skipto",
-    description: "Skips to a specified position in the queue deleting the previous tracks",
+    description: "Skip to a specified position in the queue, deleting the previous tracks",
     voiceChannel: true,
     options: [
         {

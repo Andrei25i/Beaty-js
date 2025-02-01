@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "volume",
-    description: ("Changes the volume of the player"),
+    description: ("Change the volume of the player"),
     voiceChannel: true,
     options: [
         {

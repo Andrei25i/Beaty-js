@@ -5,7 +5,7 @@ const songCommand = require("./song")
 
 module.exports = {
     name: "queue",
-    description: "Shows all songs in the queue",
+    description: "Show all the songs in the queue",
     voiceChannel: true,
 
     async execute({interaction}) {

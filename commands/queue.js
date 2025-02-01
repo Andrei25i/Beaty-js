@@ -16,7 +16,9 @@ module.exports = {
         let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
         if (!queue) {
             defaultEmbed.setDescription("There is currently no queue");
-            return interaction.editReply({ embeds: [defaultEmbed]});
+            return interaction.editReply({embeds: [defaultEmbed]}).then(message => {
+                message.react('❌');
+            });
         }
 
         if (queue.isPlaying() && queue.tracks.size < 1 ) {

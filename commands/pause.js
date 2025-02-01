@@ -14,7 +14,9 @@ module.exports = {
 
         if (!queue?.isPlaying()) {
             defaultEmbed.setDescription("No music is currently playing");
-            return interaction.editReply({ embeds: [defaultEmbed]});
+            return interaction.editReply({embeds: [defaultEmbed]}).then(message => {
+                message.react('❌');
+            });
         }
 
         if (queue.node.isPaused()) {

@@ -12,8 +12,14 @@ module.exports = {
 
         let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
 
-        defaultEmbed.setDescription("No music is currently playing right now");
-        if (!queue) return interaction.editReply({ embeds: [defaultEmbed]});
+        
+        if (!queue) {
+            defaultEmbed.setDescription("No music is currently playing");
+            return interaction.editReply({embeds: [defaultEmbed]}).then(message => {
+                message.react('❌');
+            });
+        }
+        
         queue.delete();
 
         defaultEmbed.setDescription("Music stopped");

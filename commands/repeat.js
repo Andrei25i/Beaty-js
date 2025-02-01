@@ -13,7 +13,9 @@ module.exports = {
         let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
         if (!queue?.isPlaying()) {
             defaultEmbed.setDescription("No music is currently playing");
-            return interaction.editReply({embeds: [defaultEmbed]});
+            return interaction.editReply({embeds: [defaultEmbed]}).then(message => {
+                message.react('❌');
+            });
         }
 
         queue.insertTrack(queue.currentTrack, 0);

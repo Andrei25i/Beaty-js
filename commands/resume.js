@@ -13,8 +13,10 @@ module.exports = {
         let defaultEmbed = new EmbedBuilder().setColor(config.embeds.color);
 
         if (!queue?.isPlaying()) {
-            defaultEmbed.setDescription("No music is currently playing right now");
-            return interaction.editReply({ embeds: [defaultEmbed]});
+            defaultEmbed.setDescription("No music is currently playing");
+            return interaction.editReply({embeds: [defaultEmbed]}).then(message => {
+                message.react('❌');
+            });
         }
 
         if (!queue.node.isPaused()) {
@@ -24,7 +26,7 @@ module.exports = {
 
         queue.node.resume();
         
-        defaultEmbed.setDescription("The song resumed");
+        defaultEmbed.setDescription("Resuming the song");
         const message = await interaction.editReply({ embeds: [defaultEmbed] });
         message.react('▶️');
     }

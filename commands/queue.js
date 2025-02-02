@@ -96,7 +96,10 @@ module.exports = {
         const row = new ActionRowBuilder().addComponents(backButton, currButton, nextButton);
 
         let queueEmbed = generateEmbed(currentPage);
-        const message = await interaction.editReply({ embeds: [queueEmbed], components: [row], fetchReply: true });
+        let message;
+        if (pages.length <= 1) message = await interaction.editReply({ embeds: [queueEmbed], components: [], fetchReply: true });
+        else message = await interaction.editReply({ embeds: [queueEmbed], components: [row], fetchReply: true });
+
         const collector = message.createMessageComponentCollector({ time: config.embeds.queueTimeout });
 
         collector.on("collect", async (i) => {

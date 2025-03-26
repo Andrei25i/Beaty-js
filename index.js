@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, Collection, ActivityType } = require("discord.js");
 const { Player } = require("discord-player");
 const { YoutubeiExtractor } = require('discord-player-youtubei');
 
@@ -56,6 +56,7 @@ client.on("ready", () => {
     }
 
     console.log("Bot is online!");
+    client.user.setActivity("music | /help", ActivityType.Listening);
 });
 
 client.on("interactionCreate", async interaction => {

@@ -1,6 +1,7 @@
 const extractUrlType = require("../spotify/extractUrlType");
 const getSpotifyToken = require("../spotify/getSpotifyToken");
 const getSpotifyTracks = require("../spotify/getSpotifyTracks");
+const getPlaylistName = require("../spotify/getPlaylistName");
 
 const { useMainPlayer, QueryType } = require("discord-player");
 const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
@@ -32,10 +33,11 @@ module.exports = {
             });
         }
 
-        let results;
+        let results, playlistName;
         try {
             const token = await getSpotifyToken();
             results = await getSpotifyTracks(url, type, token);
+            playlistName = await getPlaylistName(url, type, token);
 
         } catch (error) {
             console.log(error);
@@ -93,7 +95,7 @@ module.exports = {
                 });
             }
 
-            const progressBar = createProgressBar(i+1, tracksDetails.length);
+            const progressBar = createProgressBar(playlistName, i+1, tracksDetails.length);
             message = await interaction.editReply({ content: `${progressBar}`, embeds: [] });
         }
 
@@ -103,7 +105,7 @@ module.exports = {
     } 
 }
 
-function createProgressBar(current, total, barLength = 20) {
+function createProgressBar(playlistName, current, total, barLength = 20) {
     const progress = Math.round((current / total) * barLength);
     const emptyProgress = barLength - progress;
 
@@ -112,5 +114,5 @@ function createProgressBar(current, total, barLength = 20) {
     const percentageText = Math.round((current / total) * 100) + '%';
 
     const animatedDots = ".".repeat(current % 4);
-    return `Loading tracks${animatedDots}\n\`| ${progressText}${emptyProgressText} | ${percentageText}     ${current}/${total} (tracks)\``;
+    return `Loading tracks from \`${playlistName}\`${animatedDots}\n\`| ${progressText}${emptyProgressText} | ${percentageText}     ${current}/${total} (tracks)\``;
 }

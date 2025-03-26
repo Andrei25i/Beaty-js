@@ -4,7 +4,7 @@ const config = require("../config");
 
 module.exports = {
     name: "repeat",
-    description: "Replay the current song from the start",
+    description: "Play the current song from the start",
     voiceChannel: true,
 
     async execute({interaction}) {

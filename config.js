@@ -9,7 +9,7 @@ module.exports = {
         spotifyBridge: true,
         volume: 75,
         leaveOnEmpty: true,
-        leaveOnEmptyCooldown: 0, // ms
+        leaveOnEmptyCooldown: 60000, // ms
         leaveOnEnd: true,
         leaveOnEndCooldown: 60000,
         discordPlayer: {

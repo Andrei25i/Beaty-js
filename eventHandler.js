@@ -26,4 +26,14 @@ module.exports = (player) => {
             .setDescription("There is no music queued right now. Add some songs with `/play (song/url)`")
         channel.send({ embeds: [titledEmbed] });
     })
+
+    // Player error event
+    player.events.on("playerError", (queue) => {
+        const channel = queue.metadata.channel;
+
+        titledEmbed
+            .setTitle("Error")
+            .setDescription("An error occurred while playing the track. Please try again.");
+        return channel.send({ embeds: [titledEmbed] })
+    });
 }

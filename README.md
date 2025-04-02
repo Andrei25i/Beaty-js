@@ -64,6 +64,9 @@ node ./index.js
 ```
 The bot should now appear to be online.
 
+## Screenshots
+![Screenshot 2025-04-02 195444](https://github.com/user-attachments/assets/a3411c64-93c8-4c27-a0af-a82a0b69c11a)
+
 ## Other Notes
 For all the commands to work, the bot needs to have all the required permissions enabled (in the [Discord Developer Portal](https://discord.com/developers/applications)):
 

@@ -1,6 +1,6 @@
 # Beaty
 
-This is a Discord Music Bot I created as a personal project to practice my JavaScript skills and develop something that my friends and I can use when we talk on Discord.
+This is a Discord music bot I created as a personal project to practice my JavaScript skills and develop something that my friends and I can use when we talk on Discord.
 
 While building this project, I aimed to create a bot that is easy to use, with simple and intuitive commands. This project allowed me to work with the discord.js and discord-player.js libraries, which made handling the audio player more efficient. I also used the Spotify API, allowing users to load public playlists or albums directly from Spotify.
 

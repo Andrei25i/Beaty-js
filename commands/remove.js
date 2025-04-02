@@ -75,13 +75,11 @@ module.exports = {
             }
 
             if (tracksToRemove.length <= 5) {
-                for (const track of tracksToRemove) {
-                    defaultEmbed.setTitle(`Removed ${tracksToRemove.length} ${tracksToRemove.length == 1 ? "track" : "tracks"} from the queue`);
-                    defaultEmbed.setDescription(
-                        tracksToRemove.map((track, i) => `\`${i + 1}\` \`[${track.duration}]\` [${track.title}](${track.url})`).join("\n")
-                    );
-                    return interaction.editReply({ embeds: [defaultEmbed] });
-                }
+                defaultEmbed.setTitle(`Removed ${tracksToRemove.length} ${tracksToRemove.length == 1 ? "track" : "tracks"} from the queue`);
+                defaultEmbed.setDescription(
+                    tracksToRemove.map((track, i) => `\`${i + 1}\` \`[${track.duration}]\` [${track.title}](${track.url})`).join("\n")
+                );
+                return interaction.editReply({ embeds: [defaultEmbed] });
             }
 
             defaultEmbed.setDescription(`Removed \`${tracksToRemove.length}\` tracks from the queue`);

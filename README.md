@@ -58,11 +58,11 @@ SPOTIFY_CLIENT_ID="SPOTIFY CLIENT ID HERE"
 ```
 
 ## Usage
-To start the bot, run this:
+To start the bot, run this command:
 ```bash
 node ./index.js
 ```
-The bot should now appear to be online.
+The bot should now appear to be online on your Discord server.
 
 ## Screenshots
 ![Screenshot 2025-04-02 195444](https://github.com/user-attachments/assets/a3411c64-93c8-4c27-a0af-a82a0b69c11a)

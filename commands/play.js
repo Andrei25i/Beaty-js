@@ -34,11 +34,9 @@ module.exports = {
             });
         }
 
-        // This line appears to resolve the "requestedBy = null" bug
         const track = result.tracks[0];
 
         try {
-            // const {track} = 
             await player.play(interaction.member.voice.channel, track, {
                 nodeOptions: {
                     metadata: {
